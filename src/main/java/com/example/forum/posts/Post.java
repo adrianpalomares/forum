@@ -1,17 +1,20 @@
 package com.example.forum.posts;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.example.forum.users.User;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name="posts")
+@Table(name = "posts")
 public class Post {
     @Id
     @GeneratedValue
     private Long id;
     private String title;
+
+    @ManyToOne
+    @JoinColumn(name="user")
+    private User user;
 
     public Long getId() {
         return id;
