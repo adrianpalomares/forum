@@ -1,11 +1,7 @@
 package com.example.forum.users;
 
-import com.example.forum.posts.Post;
-import org.hibernate.annotations.Fetch;
-
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.List;
 // TODO: Add validation "spring-boot-strarter-validation"
 
 @Entity
@@ -19,10 +15,6 @@ public class User {
     private String password;
     private String email;
     private Instant created;
-
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Post> posts;
 
     public long getId() {
         return id;
@@ -63,6 +55,5 @@ public class User {
     public void setCreated(Instant created) {
         this.created = created;
     }
-
 
 }
