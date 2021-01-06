@@ -2,6 +2,16 @@ package com.example.forum.posts;
 
 public class PostRequest {
 
+    private Long id;
+
+        public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     private String title;
     private Long userId;
 
