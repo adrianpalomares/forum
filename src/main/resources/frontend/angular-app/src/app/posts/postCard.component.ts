@@ -1,9 +1,12 @@
-import { Component } from "@angular/core";
+import { Component, Input, OnInit } from '@angular/core';
+import { Post } from './post.model';
 
 @Component({
-    selector: "app-postcard",
-    template: "<h1>It works!</h1>"
+    selector: 'app-postcard',
+    templateUrl: './postCard.component.html',
 })
-export class PostCardComponent {
-
+export class PostCardComponent  {
+    @Input() post: Post;
+    constructor() {}
+    
 }
