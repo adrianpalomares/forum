@@ -3,16 +3,7 @@
     <div class="col-md-12">
       <!-- Posts -->
       <div *ngIf="posts">
-        <div *ngFor="let post of posts; let i = index" class="card mb-4">
-          <div class="card-body">
-            <h3 class="card-title">
-              <a class="card-link" href="#">{{ post.title }}</a>
-            </h3>
-            <h6 class="card-subtitle mb-2 text-muted">This post's user is</h6>
-            <p class="card-text">This posts id is {{ post.id }}</p>
-            <span class="oi oi-thumb-up mr-2"> 999</span><span class="oi oi-thumb-down mr-2"> 999</span><span class="oi oi-comment-square mr-2"> 999</span>
-          </div>
-        </div>
+        <app-postcard></app-postcard>
       </div>
     </div>
   </div>
