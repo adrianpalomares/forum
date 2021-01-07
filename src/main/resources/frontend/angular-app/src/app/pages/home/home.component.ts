@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from '../core/model';
-import { PostService } from '../core/services';
+import { Post } from 'src/app/core/model';
+import { PostService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +13,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.getPosts().subscribe((res) => (this.posts = res));
-    console.log(this.posts)
+    console.log(this.posts);
   }
 }
