@@ -1,8 +1,12 @@
 package com.example.forum.auth;
 
+import com.example.forum.users.User;
 import com.example.forum.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import java.util.Optional;
 
 @Service
 public class AuthenticationService {
@@ -12,8 +16,10 @@ public class AuthenticationService {
     @Autowired
     JwtUtil jwtUtil;
 
-    public LoginResponse login(LoginRequest loginRequest) {
-//        Optional<User> user = Optional.ofNullable(userRepository.findByUsername(loginRequest.getUsername()));
+    public LoginResponse login(LoginRequest loginRequest) throws UsernameNotFoundException{
+        Optional<User> user = userRepository.findByUsername(loginRequest.getUsername());
+        user.orElseThrow(() -> new UsernameNotFoundException("Username doesn't exist."));
+
         // Check if input password matches
 
         // If it does generate token
