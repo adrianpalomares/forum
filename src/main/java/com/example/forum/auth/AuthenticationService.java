@@ -19,12 +19,6 @@ public class AuthenticationService {
     public LoginResponse login(LoginRequest loginRequest) throws UsernameNotFoundException{
         Optional<User> user = userRepository.findByUsername(loginRequest.getUsername());
         user.orElseThrow(() -> new UsernameNotFoundException("Username doesn't exist."));
-
-        // Check if input password matches
-
-        // If it does generate token
-
-        // Else maybe a message
-        return new LoginResponse(jwtUtil.generateToken("adrian"));
+        return new LoginResponse(jwtUtil.generateToken(user.get().getUsername()));
     }
 }
