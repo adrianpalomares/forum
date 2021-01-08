@@ -1,6 +1,5 @@
 package com.example.forum.auth;
 
-import com.example.forum.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,7 +11,7 @@ public class AuthenticationController {
     AuthenticationService authenticationService;
 
     @PostMapping("api/auth/login")
-    public String login(@RequestBody LoginRequest loginRequest) {
+    public LoginResponse login(@RequestBody LoginRequest loginRequest) {
         return authenticationService.login(loginRequest);
     }
 }

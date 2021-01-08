@@ -12,13 +12,13 @@ public class AuthenticationService {
     @Autowired
     JwtUtil jwtUtil;
 
-    public String login(LoginRequest loginRequest) {
+    public LoginResponse login(LoginRequest loginRequest) {
 //        Optional<User> user = Optional.ofNullable(userRepository.findByUsername(loginRequest.getUsername()));
         // Check if input password matches
 
         // If it does generate token
 
         // Else maybe a message
-        return jwtUtil.generateToken("adrian");
+        return new LoginResponse(jwtUtil.generateToken("adrian"));
     }
 }
