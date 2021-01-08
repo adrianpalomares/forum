@@ -3,6 +3,7 @@ package com.example.forum.users;
 import javax.persistence.*;
 import java.time.Instant;
 // TODO: Add validation "spring-boot-strarter-validation"
+// TODO: Make username unique
 
 @Entity
 @Table(name = "users")
