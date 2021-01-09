@@ -6,6 +6,15 @@ public class PostRequest {
     private String title;
     private Long userId;
 
+    public PostRequest() {
+    }
+
+    public PostRequest(Long id, String title, Long userId) {
+        this.id = id;
+        this.title = title;
+        this.userId = userId;
+    }
+
     public Long getId() {
         return id;
     }
