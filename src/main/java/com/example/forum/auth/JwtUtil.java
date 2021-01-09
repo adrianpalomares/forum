@@ -11,8 +11,11 @@ import java.util.Date;
 
 @Service
 public class JwtUtil {
-    @Value("${secretkey}")
     private String SECRET;
+
+    public JwtUtil(@Value("${secretkey}") String SECRET) {
+        this.SECRET = SECRET;
+    }
 
     public String generateToken(String username) {
         String token = Jwts.builder().setId("forumapplication")
