@@ -14,6 +14,11 @@ public class PostService {
     @Autowired
     PostRepository postRepository;
 
+    public PostService(UserRepository userRepository, PostRepository postRepository) {
+        this.userRepository = userRepository;
+        this.postRepository = postRepository;
+    }
+
     public Optional<Post> getPostById(Long id) {
         return postRepository.findById(id);
     }
