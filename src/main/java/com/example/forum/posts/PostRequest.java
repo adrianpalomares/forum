@@ -3,17 +3,16 @@ package com.example.forum.posts;
 public class PostRequest {
 
     private Long id;
+    private String title;
+    private Long userId;
 
-        public Long getId() {
+    public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
-
-    private String title;
-    private Long userId;
 
     public String getTitle() {
         return title;
