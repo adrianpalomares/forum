@@ -17,6 +17,17 @@ public class User {
     private String email;
     private Instant created;
 
+    public User() {
+    }
+
+    public User(long id, String username, String password, String email, Instant created) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.created = created;
+    }
+
     public long getId() {
         return id;
     }
