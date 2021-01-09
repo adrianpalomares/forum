@@ -11,18 +11,27 @@ import javax.persistence.*;
 public class Post {
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
     private String title;
 
     @ManyToOne
     @JoinColumn(name="user", referencedColumnName = "id")
     private User user;
 
-    public Long getId() {
+    public Post() {
+    }
+
+    public Post(long id, String title, User user) {
+        this.id = id;
+        this.title = title;
+        this.user = user;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
