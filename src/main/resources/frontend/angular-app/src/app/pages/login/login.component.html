@@ -1,15 +1,15 @@
 <div class="container mt-4">
-  <form class="col-sm-4 mx-auto">
+  <form (ngSubmit)="onSubmit" [formGroup]="form" class="col-sm-4 mx-auto">
     <h1 class="mb-4">Login</h1>
     <!-- Email input -->
     <div class="form-outline mb-4">
-      <input type="email" id="form1Example1" class="form-control" />
+      <input formControlName="email" type="email" id="form1Example1" class="form-control" />
       <label class="form-label" for="form1Example1">Email address</label>
     </div>
 
     <!-- Password input -->
     <div class="form-outline mb-4">
-      <input type="password" id="form1Example2" class="form-control" />
+      <input formControlName="password" type="password" id="form1Example2" class="form-control" />
       <label class="form-label" for="form1Example2">Password</label>
     </div>
 
@@ -41,6 +41,7 @@
     <div>
       <button
         id="signin-button"
+        (click)="onSubmit()"
         type="submit"
         class="btn btn-primary btn-block"
       >
