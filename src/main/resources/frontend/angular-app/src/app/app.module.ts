@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PagesModule } from './pages/pages.module';
 import { PostsModule } from './posts/posts.module';
 import { CommentService } from './comments/comments.service';
+import { PostService } from './posts/posts.service';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,9 @@ import { CommentService } from './comments/comments.service';
     AppRoutingModule,
     HttpClientModule,
     PagesModule,
-    PostsModule
+    PostsModule,
   ],
-  providers: [CommentService],
+  providers: [CommentService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
