@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PostsModule } from '../posts/posts.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../auth/auth.service';
 
 
 
@@ -14,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     PostsModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers: [AuthService]
 })
 export class PagesModule { }
