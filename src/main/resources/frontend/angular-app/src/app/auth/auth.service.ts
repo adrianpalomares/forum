@@ -13,4 +13,17 @@ export class AuthService {
             password: password,
         });
     }
+
+    isLoggedIn() {
+        const token = localStorage.getItem('token');
+        return token != null;
+    }
+
+    logout() {
+        localStorage.removeItem('token');
+    }
+
+    register() {
+
+    }
 }
