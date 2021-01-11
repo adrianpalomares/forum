@@ -1,6 +1,6 @@
 <div class="container mt-4">
   <h1>Register</h1>
-  <form [formGroup]="form" class="col-sm-4 mx-auto">
+  <form [formGroup]="form" class="col-sm-4 mx-auto" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="inputEmail">Email address</label>
       <input
@@ -8,6 +8,7 @@
         class="form-control"
         id="inputEmail"
         placeholder="Enter email"
+        formControlName="email"
       />
     </div>
     <div class="form-group">
@@ -17,6 +18,7 @@
         class="form-control"
         id="inputUsername"
         placeholder="Enter username"
+        formControlName="username"
       />
     </div>
 
@@ -27,17 +29,21 @@
         class="form-control"
         id="inputPassword"
         placeholder="Password"
+        formControlName="password"
       />
     </div>
-     <div class="form-group">
+    <div class="form-group">
       <label for="inputConfirmPassword">Confirm Password</label>
       <input
         type="password"
         class="form-control"
         id="inputConfirmPassword"
         placeholder="Confirm Password"
+        formControlName="confirmPassword"
       />
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="col text-center mt-4">
+      <button type="submit" class="btn btn-primary" (click)="onSubmit">Submit</button>
+    </div>
   </form>
 </div>
