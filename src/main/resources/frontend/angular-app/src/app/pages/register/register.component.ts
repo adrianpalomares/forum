@@ -22,6 +22,6 @@ export class RegisterComponent implements OnInit {
     }
 
     onSubmit(): void {
-        console.log(this.form.get('email'));
+        
     }
 }

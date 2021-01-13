@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { PostsModule } from '../posts/posts.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
+import { CommentService } from '../comments/comments.service';
 
 
 
@@ -16,6 +17,6 @@ import { AuthService } from '../auth/auth.service';
     PostsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService]
+  providers: [AuthService, CommentService]
 })
 export class PagesModule { }

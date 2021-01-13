@@ -32,8 +32,15 @@ export class LoginComponent implements OnInit {
         const password = this.form.get('password').value;
         // Log in with authService
         // If success set token to localstorage
-        this.authService.login(email, password).subscribe((res) => {
-            localStorage.setItem('token', JSON.stringify(res));
-        });
+        this.authService.login(email, password).subscribe(
+            (response) => {
+                console.log(response);
+                localStorage.setItem('token', JSON.stringify(response));
+            },
+            // If error
+            (response) => {
+                console.log('Login error', response);
+            }
+        );
     }
 }

@@ -7,14 +7,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.xml.ws.Response;
+
 @RestController
 public class AuthenticationController {
     @Autowired
     AuthenticationService authenticationService;
 
     @PostMapping("api/auth/login")
-    public LoginResponse login(@RequestBody LoginRequest loginRequest) {
-        return authenticationService.login(loginRequest);
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+
+        LoginResponse loginResponse = authenticationService.login(loginRequest);
+        if (loginResponse == null) {
+            new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+        }
+        return new ResponseEntity<>(loginResponse, HttpStatus.ACCEPTED);
     }
 
     @PostMapping("api/auth/register")

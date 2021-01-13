@@ -23,7 +23,15 @@ export class AuthService {
         localStorage.removeItem('token');
     }
 
-    register() {
-
+    register(username: String, password: String, email: String) {
+        return this.httpClient.post<any>(
+            `${this.apiUrl}/register`,
+            {
+                username: username,
+                password: password,
+                email: email,
+            },
+            { observe: 'response',}
+        );
     }
 }
