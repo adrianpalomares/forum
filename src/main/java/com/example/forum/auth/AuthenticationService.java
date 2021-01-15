@@ -29,6 +29,7 @@ public class AuthenticationService {
     }
 
     // TODO: Throw exception when user exists
+    // TODO: Make username/ email unique
     public RegisterResponse register(RegisterRequest registerRequest) {
         // Get user if it exists return error code
         Optional<User> user = userRepository.findByUsername(registerRequest.getUsername());
