@@ -7,11 +7,12 @@ import { PostsModule } from '../posts/posts.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { CommentService } from '../comments/comments.service';
+import { LogoutComponent } from './logout/logout.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, LoginComponent, RegisterComponent],
+  declarations: [HomeComponent, LoginComponent, RegisterComponent, LogoutComponent],
   imports: [
     CommonModule,
     PostsModule,
