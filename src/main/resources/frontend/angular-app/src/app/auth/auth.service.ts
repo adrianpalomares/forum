@@ -34,4 +34,9 @@ export class AuthService {
             { observe: 'response',}
         );
     }
+
+    getToken() {
+        const token = localStorage.getItem('token');
+        return token;
+    }
 }
