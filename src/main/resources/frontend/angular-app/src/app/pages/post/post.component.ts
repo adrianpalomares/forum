@@ -4,6 +4,7 @@ import { CommentService } from 'src/app/comments/comments.service';
 import { Post } from 'src/app/posts/post.model';
 import { Comment } from 'src/app/comments/comment.model';
 import { PostService } from 'src/app/posts/posts.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
     selector: 'app-post',
@@ -18,7 +19,8 @@ export class PostComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private postService: PostService,
-        private commentService: CommentService
+        private commentService: CommentService,
+        private authService: AuthService
     ) {}
 
     ngOnInit(): void {
@@ -47,7 +49,7 @@ export class PostComponent implements OnInit {
             const comment: Comment = {
                 // TODO: Need to make this a comment type
                 // TODO: userid is hardcoded
-                userId: 1, // Can probably get this from the jwt
+                userId: JSON.parse(this.authService.getUserId()), // Can probably get this from the jwt
                 postId: this.post.id,
                 content: this.commentArea,
             };

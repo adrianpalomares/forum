@@ -3,10 +3,12 @@ package com.example.forum.auth;
 public class LoginResponse {
     private String token;
     private String username;
+    private Long userId;
 
-    public LoginResponse(String token, String username) {
+    public LoginResponse(String token, String username, Long userId) {
         this.token = token;
         this.username = username;
+        this.userId = userId;
     }
 
     public LoginResponse() {
@@ -26,5 +28,13 @@ public class LoginResponse {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

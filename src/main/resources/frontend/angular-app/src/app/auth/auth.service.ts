@@ -31,12 +31,22 @@ export class AuthService {
                 password: password,
                 email: email,
             },
-            { observe: 'response',}
+            { observe: 'response' }
         );
     }
 
     getToken() {
         const token = localStorage.getItem('token');
         return token;
+    }
+
+    getUsername() {
+        const username = localStorage.getItem('username');
+        return username;
+    }
+
+    getUserId() {
+        const userId = localStorage.getItem('userId');
+        return userId;
     }
 }

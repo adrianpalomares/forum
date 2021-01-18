@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
                     'username',
                     JSON.stringify(response.username)
                 );
+                localStorage.setItem('userId', JSON.stringify(response.userId));
                 this.router.navigate(['/']);
             },
             // If error
