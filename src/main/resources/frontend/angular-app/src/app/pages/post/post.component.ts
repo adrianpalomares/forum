@@ -1,8 +1,8 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommentService } from 'src/app/comments/comments.service';
 import { Post } from 'src/app/posts/post.model';
+import { Comment } from 'src/app/comments/comment.model';
 import { PostService } from 'src/app/posts/posts.service';
 
 @Component({
@@ -13,6 +13,7 @@ import { PostService } from 'src/app/posts/posts.service';
 export class PostComponent implements OnInit {
     post: Post;
     comments: Comment[];
+    commentArea: string = '';
 
     constructor(
         private route: ActivatedRoute,
@@ -32,10 +33,33 @@ export class PostComponent implements OnInit {
                 this.commentService.getCommentsByPost(this.post).subscribe(
                     (comments) => {
                         this.comments = comments;
-                        console.log((this.comments.length));
+                        console.log(this.comments.length);
                     },
                     (err) => console.log(err)
                 );
             });
+    }
+
+    onCommentSubmit(e): void {
+        if (e.ctrlKey && e.keyCode === 13) {
+            console.log('match');
+            // Send comment request to api
+            const comment: Comment = {
+                // TODO: Need to make this a comment type
+                // TODO: userid is hardcoded
+                userId: 1, // Can probably get this from the jwt
+                postId: this.post.id,
+                content: this.commentArea,
+            };
+            this.commentService.createComment(comment).subscribe(
+                (res) => {
+                    this.comments.push(res);
+                    this.commentArea = '';
+                },
+                (err) => {
+                    console.log('erorr', err);
+                }
+            );
+        }
     }
 }
