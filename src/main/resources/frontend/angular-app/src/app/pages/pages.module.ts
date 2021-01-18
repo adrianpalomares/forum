@@ -8,11 +8,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { CommentService } from '../comments/comments.service';
 import { LogoutComponent } from './logout/logout.component';
+import { PostComponent } from './post/post.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, LoginComponent, RegisterComponent, LogoutComponent],
+  declarations: [HomeComponent, LoginComponent, RegisterComponent, LogoutComponent, PostComponent],
   imports: [
     CommonModule,
     PostsModule,
