@@ -1,5 +1,7 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CommentService } from 'src/app/comments/comments.service';
 import { Post } from 'src/app/posts/post.model';
 import { PostService } from 'src/app/posts/posts.service';
 
@@ -10,10 +12,12 @@ import { PostService } from 'src/app/posts/posts.service';
 })
 export class PostComponent implements OnInit {
     post: Post;
+    comments: Comment[];
 
     constructor(
         private route: ActivatedRoute,
-        private postService: PostService
+        private postService: PostService,
+        private commentService: CommentService
     ) {}
 
     ngOnInit(): void {
@@ -24,6 +28,14 @@ export class PostComponent implements OnInit {
             .subscribe((res) => {
                 console.log(res);
                 this.post = res;
+                // Then grab the comments
+                this.commentService.getCommentsByPost(this.post).subscribe(
+                    (comments) => {
+                        this.comments = comments;
+                        console.log((this.comments.length));
+                    },
+                    (err) => console.log(err)
+                );
             });
     }
 }

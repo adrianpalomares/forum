@@ -26,8 +26,9 @@
     <h5>Comments</h5>
   </div>
 
-  <div>
-    <div class="card">
+  <div *ngIf="comments">
+    <div *ngIf="comments.length === 0">No comments yet!</div>
+    <div *ngFor="let comment of comments" class="card">
       <div class="card-body">
         <h5 class="card-title">sampleuser27</h5>
         <h6 class="card-subtitle mb-2 text-muted">01/12/12</h6>
@@ -36,25 +37,6 @@
           bulk of the card's content.
         </p>
       </div>
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">sampleuser27</h5>
-          <h6 class="card-subtitle mb-2 text-muted">01/12/12</h6>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-        </div>
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">sampleuser27</h5>
-              <h6 class="card-subtitle mb-2 text-muted">01/12/12</h6>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-              </p>
-            </div>
-            
     </div>
   </div>
 </div>
