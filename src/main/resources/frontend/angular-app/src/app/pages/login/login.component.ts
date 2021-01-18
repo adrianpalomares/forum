@@ -39,9 +39,13 @@ export class LoginComponent implements OnInit {
         // If success set token to localstorage
         this.authService.login(email, password).subscribe(
             (response) => {
-                console.log(response.token);
+                console.log(response);
                 localStorage.setItem('token', JSON.stringify(response.token));
-                this.router.navigate(['/',]);
+                localStorage.setItem(
+                    'username',
+                    JSON.stringify(response.username)
+                );
+                this.router.navigate(['/']);
             },
             // If error
             (response) => {

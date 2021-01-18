@@ -21,7 +21,7 @@ public class JwtUtil {
         String token = Jwts.builder().setId("forumapplication")
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 600000))
+                .setExpiration(new Date(System.currentTimeMillis() + 60000000))
                 .signWith(SignatureAlgorithm.HS256, SECRET.getBytes())
                 .compact();
         return token;

@@ -22,7 +22,7 @@ public class AuthenticationService {
         user.orElseThrow(() -> new UsernameNotFoundException("Username doesn't exist."));
         // Simple password match check
         if (user.get().getPassword().equals(loginRequest.getPassword())) {
-            return new LoginResponse(jwtUtil.generateToken(user.get().getUsername()));
+            return new LoginResponse(jwtUtil.generateToken(user.get().getUsername()), user.get().getUsername());
 
         }
         return null;
