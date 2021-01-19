@@ -8,7 +8,7 @@ export class PostService {
     constructor(private httpClient: HttpClient) {}
 
     public getPosts() {
-        return this.httpClient.get<Post[]>(`${this.apiUrl}`);
+        return this.httpClient.get<Post[]>(`${this.apiUrl}/`);
     }
 
     public getPostById(id: string) {
