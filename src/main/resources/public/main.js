@@ -413,7 +413,7 @@ class AppComponent {
     }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"])); };
-AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([_posts_posts_service__WEBPACK_IMPORTED_MODULE_1__["PostService"]])], decls: 15, vars: 3, consts: [[1, "navbar", "navbar-expand-lg", "navbar-dark", "bg-dark"], [1, "container"], ["href", "#", 1, "navbar-brand"], ["type", "button", "data-toggle", "collapse", "data-target", "#navbarNav", "aria-controls", "navbarNav", "aria-expanded", "false", "aria-label", "Toggle navigation", 1, "navbar-toggler"], [1, "navbar-toggler-icon"], ["id", "navbarNav", 1, "collapse", "navbar-collapse"], [1, "navbar-nav", "ml-auto"], [1, "nav-item"], ["aria-current", "page", "href", "#", 1, "nav-link", "active"], ["class", "nav-item", 4, "ngIf"], ["href", "login", 1, "nav-link"], ["href", "register", 1, "nav-link"], ["href", "logout", 1, "nav-link"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
+AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([_posts_posts_service__WEBPACK_IMPORTED_MODULE_1__["PostService"]])], decls: 15, vars: 3, consts: [[1, "navbar", "navbar-expand-lg", "navbar-dark", "bg-dark"], [1, "container"], ["href", "#", 1, "navbar-brand"], ["type", "button", "data-toggle", "collapse", "data-target", "#navbarNav", "aria-controls", "navbarNav", "aria-expanded", "false", "aria-label", "Toggle navigation", 1, "navbar-toggler"], [1, "navbar-toggler-icon"], ["id", "navbarNav", 1, "collapse", "navbar-collapse"], [1, "navbar-nav", "ml-auto"], [1, "nav-item"], ["aria-current", "page", "href", "#", 1, "nav-link", "active"], ["class", "nav-item", 4, "ngIf"], ["href", "login", 1, "nav-link"], ["href", "register", 1, "nav-link"], ["href", "logoutroute", 1, "nav-link"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "nav", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "a", 2);
@@ -480,7 +480,7 @@ class PostService {
         this.apiUrl = '/api/posts';
     }
     getPosts() {
-        return this.httpClient.get(`${this.apiUrl}`);
+        return this.httpClient.get(`${this.apiUrl}/`);
     }
     getPostById(id) {
         return this.httpClient.get(`${this.apiUrl}/${id}`);
@@ -1065,6 +1065,8 @@ class AuthService {
     }
     logout() {
         localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        localStorage.removeItem('userId');
     }
     register(username, password, email) {
         return this.httpClient.post(`${this.apiUrl}/register`, {
@@ -1125,7 +1127,7 @@ const routes = [
     { path: '', component: _pages_home_home_component__WEBPACK_IMPORTED_MODULE_2__["HomeComponent"] },
     { path: 'login', component: _pages_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"] },
     { path: 'register', component: _pages_register_register_component__WEBPACK_IMPORTED_MODULE_6__["RegisterComponent"] },
-    { path: 'logout', component: _pages_logout_logout_component__WEBPACK_IMPORTED_MODULE_4__["LogoutComponent"] },
+    { path: 'logoutroute', component: _pages_logout_logout_component__WEBPACK_IMPORTED_MODULE_4__["LogoutComponent"] },
     { path: 'post/:id', component: _pages_post_post_component__WEBPACK_IMPORTED_MODULE_5__["PostComponent"] },
 ];
 class AppRoutingModule {
