@@ -13,7 +13,7 @@ import java.util.Date;
 public class JwtUtil {
     private String SECRET;
 
-    public JwtUtil(@Value("${secretkey}") String SECRET) {
+    public JwtUtil(@Value("${spring.secret.key}") String SECRET) {
         this.SECRET = SECRET;
     }
 
