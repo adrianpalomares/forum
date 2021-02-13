@@ -11,13 +11,13 @@ public class PostController {
     @Autowired
     PostService postService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+//    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/posts/{id}")
     public Optional<Post> getPostById(@PathVariable(value = "id") Long postId) {
         return postService.getPostById(postId);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+//    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/posts")
     public Iterable<Post> getAllPosts() {
         return postService.getAllPosts();
