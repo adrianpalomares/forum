@@ -7,17 +7,18 @@ import java.util.Optional;
 //TODO: Create a ResponseObject for post
 
 @RestController
+//@CrossOrigin(origins = "*")
 public class PostController {
     @Autowired
     PostService postService;
 
-//    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("api/posts/{id}")
     public Optional<Post> getPostById(@PathVariable(value = "id") Long postId) {
         return postService.getPostById(postId);
     }
 
-//    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @GetMapping("api/posts")
     public Iterable<Post> getAllPosts() {
         return postService.getAllPosts();

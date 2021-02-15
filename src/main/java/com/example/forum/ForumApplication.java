@@ -30,7 +30,8 @@ public class ForumApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**").allowedOrigins(clientUrl);
+                registry.addMapping("/**").allowedOrigins(clientUrl);
+//                registry.addMapping("/api/comments/?**").allowedOrigins(clientUrl);
             }
         };
     }
