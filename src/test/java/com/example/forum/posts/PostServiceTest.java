@@ -37,7 +37,7 @@ public class PostServiceTest {
     @Test
     public void getPostByIdTest() {
         User user = new User(1, "username", "password", "email@email.com", Instant.now());
-        Post post = new Post(1, "This is a post", user);
+        Post post = new Post(1, "This is a post", user, "This is the post's text.");
 
         when(postRepository.findById(Long.valueOf(1))).thenReturn(Optional.of(post));
 
@@ -52,9 +52,9 @@ public class PostServiceTest {
     public void getAllPosts() {
         User user = new User(1, "username", "password", "email@email.com", Instant.now());
         List<Post> posts = new ArrayList<>();
-        Post postOne = new Post(1, "This is a post", user);
-        Post postTwo = new Post(2, "This is another post", user);
-        Post postThree = new Post(3, "And this is another post", user);
+        Post postOne = new Post(1, "This is a post", user, "This is the post's text.");
+        Post postTwo = new Post(2, "This is another post", user, "Post text.");
+        Post postThree = new Post(3, "And this is another post", user, "Post text for other post.");
         posts.add(postOne);
         posts.add(postTwo);
         posts.add(postThree);
@@ -78,7 +78,7 @@ public class PostServiceTest {
     @Test
     public void createPostTest() {
         User user = new User(1, "username", "password", "email@email.com", Instant.now());
-        PostRequest postRequest = new PostRequest(Long.valueOf(1), "this is title", Long.valueOf(user.getId()));
+        PostRequest postRequest = new PostRequest(Long.valueOf(1), "this is title", Long.valueOf(user.getId()), "This is the post's text");
 
         when(userRepository.findById(postRequest.getUserId())).thenReturn(Optional.of(user));
         // Have to mock postRepository.save()
@@ -93,8 +93,11 @@ public class PostServiceTest {
     @Test
     public void updatePostTest() {
         User user = new User(1, "username", "password", "email@email.com", Instant.now());
-        Post post = new Post(1, "This is a post", user);
-        PostRequest postRequest = new PostRequest(Long.valueOf(1), "this is the new title", Long.valueOf(user.getId()));
+        Post post = new Post(1, "This is a post", user, "Some text for the post.");
+        PostRequest postRequest = new PostRequest(Long.valueOf(1),
+                "this is the new title",
+                Long.valueOf(user.getId()),
+                "Post text.");
 
         when(postRepository.findById(postRequest.getId())).thenReturn(Optional.of(post));
         when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
@@ -108,7 +111,7 @@ public class PostServiceTest {
     @Test
     public void deletePostTest() {
         User user = new User(1, "username", "password", "email@email.com", Instant.now());
-        Post post = new Post(Long.valueOf(1), "this is the title", user);
+        Post post = new Post(Long.valueOf(1), "this is the title", user, "Text for the post.");
 
         when(postRepository.findById(post.getId())).thenReturn(Optional.of(post));
         Post result = postService.deletePost(post.getId());

@@ -1,8 +1,6 @@
 package com.example.forum.posts;
 
 import com.example.forum.users.User;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -13,18 +11,20 @@ public class Post {
     @GeneratedValue
     private long id;
     private String title;
+    private String text;
 
     @ManyToOne
-    @JoinColumn(name="user", referencedColumnName = "id")
+    @JoinColumn(name = "user", referencedColumnName = "id")
     private User user;
 
     public Post() {
     }
 
-    public Post(long id, String title, User user) {
+    public Post(long id, String title, User user, String text) {
         this.id = id;
         this.title = title;
         this.user = user;
+        this.text = text;
     }
 
     public long getId() {
@@ -49,5 +49,13 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

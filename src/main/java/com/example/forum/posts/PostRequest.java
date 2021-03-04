@@ -5,14 +5,16 @@ public class PostRequest {
     private Long id;
     private String title;
     private Long userId;
+    private String text;
 
     public PostRequest() {
     }
 
-    public PostRequest(Long id, String title, Long userId) {
+    public PostRequest(Long id, String title, Long userId, String text) {
         this.id = id;
         this.title = title;
         this.userId = userId;
+        this.text = text;
     }
 
     public Long getId() {
@@ -37,5 +39,13 @@ public class PostRequest {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }
