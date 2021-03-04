@@ -1,8 +1,6 @@
 package com.example.forum.posts;
 
 import com.example.forum.users.User;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -16,7 +14,7 @@ public class Post {
     private String text;
 
     @ManyToOne
-    @JoinColumn(name="user", referencedColumnName = "id")
+    @JoinColumn(name = "user", referencedColumnName = "id")
     private User user;
 
     public Post() {
