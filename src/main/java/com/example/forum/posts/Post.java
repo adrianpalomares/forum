@@ -13,6 +13,7 @@ public class Post {
     @GeneratedValue
     private long id;
     private String title;
+    private String text;
 
     @ManyToOne
     @JoinColumn(name="user", referencedColumnName = "id")
@@ -21,10 +22,11 @@ public class Post {
     public Post() {
     }
 
-    public Post(long id, String title, User user) {
+    public Post(long id, String title, User user, String text) {
         this.id = id;
         this.title = title;
         this.user = user;
+        this.text = text;
     }
 
     public long getId() {
@@ -49,5 +51,13 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }
