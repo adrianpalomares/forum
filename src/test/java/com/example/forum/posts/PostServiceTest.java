@@ -78,7 +78,7 @@ public class PostServiceTest {
     @Test
     public void createPostTest() {
         User user = new User(1, "username", "password", "email@email.com", Instant.now());
-        PostRequest postRequest = new PostRequest(Long.valueOf(1), "this is title", Long.valueOf(user.getId()));
+        PostRequest postRequest = new PostRequest(Long.valueOf(1), "this is title", Long.valueOf(user.getId()), "This is the post's text");
 
         when(userRepository.findById(postRequest.getUserId())).thenReturn(Optional.of(user));
         // Have to mock postRepository.save()
@@ -94,7 +94,10 @@ public class PostServiceTest {
     public void updatePostTest() {
         User user = new User(1, "username", "password", "email@email.com", Instant.now());
         Post post = new Post(1, "This is a post", user, "Some text for the post.");
-        PostRequest postRequest = new PostRequest(Long.valueOf(1), "this is the new title", Long.valueOf(user.getId()));
+        PostRequest postRequest = new PostRequest(Long.valueOf(1),
+                "this is the new title",
+                Long.valueOf(user.getId()),
+                "Post text.");
 
         when(postRepository.findById(postRequest.getId())).thenReturn(Optional.of(post));
         when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
