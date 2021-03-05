@@ -12,6 +12,8 @@ import java.util.Date;
 @Service
 public class JwtUtil {
     private String SECRET;
+    // The length of a day in milliseconds
+    private final long DAY_IN_MILLISECONDS = 86400000;
 
     public JwtUtil(@Value("${spring.secret.key}") String SECRET) {
         this.SECRET = SECRET;
@@ -21,7 +23,7 @@ public class JwtUtil {
         String token = Jwts.builder().setId("forumapplication")
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 60000000))
+                .setExpiration(new Date(System.currentTimeMillis() + DAY_IN_MILLISECONDS))
                 .signWith(SignatureAlgorithm.HS256, SECRET.getBytes())
                 .compact();
         return token;
