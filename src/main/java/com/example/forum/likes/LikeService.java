@@ -38,11 +38,7 @@ public class LikeService {
      * @param value
      * @return The Like object that was either created or retrieved.
      */
-    // TODO: Handle if the value changes. eg. From like to dislike. At the moment, if the like exists it will just return
-    // it, it won't check if the value changes.
     public Like submitLike(long userId, long postId, boolean value) {
-        // This is the value that will be returned in the end
-        Like result;
         // Grab User and Post objects
         Optional<User> user = userRepository.findById(userId);
         Optional<Post> post = postRepository.findById(postId);
@@ -53,18 +49,19 @@ public class LikeService {
         // If the like does not exist, then create it.
         if (queryResult == null) {
             Like createdLike = new Like(user.get(), post.get(), value);
-            result = likeRepository.save(createdLike);
-        } else {
-            // Else, check the value field. If it did not change just send back the like. Else, update.
-            if (queryResult.getValue() != value) {
-                // Update and save
-                queryResult.setValue(value);
-                Like savedLike = likeRepository.save(queryResult);
-                return savedLike;
-            }
-            result = queryResult;
+            likeRepository.save(createdLike);
+            return createdLike;
         }
 
-        return result;
+        // Else, check the value field. If it did not change just send back the like. Else, update.
+        if (queryResult.getValue() != value) {
+            // Update and save
+            queryResult.setValue(value);
+            Like savedLike = likeRepository.save(queryResult);
+            return savedLike;
+        }
+
+        // If no change required, then return
+        return queryResult;
     }
 }
