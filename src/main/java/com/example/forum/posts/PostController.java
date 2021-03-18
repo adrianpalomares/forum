@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 //TODO: Create a ResponseObject for post
 
 @RestController
@@ -37,10 +38,16 @@ public class PostController {
      */
     @CrossOrigin(origins = "*")
     @GetMapping("api/posts/{id}/likes")
-    public List<Like> getLikesFromPost(@PathVariable(value = "id") Long postId) {
+    public List<LikeDto> getLikesFromPost(@PathVariable(value = "id") Long postId) {
         // Grab likes using like service
         List<Like> listOfLikes = likeService.getLikesByPost(postId);
-        return listOfLikes;
+
+        // Converting into a list of LikeDto's
+        List<LikeDto> response = listOfLikes.stream().map((like) -> {
+            return new LikeDto(like.getId(), like.getUser().getId(), like.getValue());
+        }).collect(Collectors.toList());
+
+        return response;
     }
 
     @PostMapping("api/posts")
