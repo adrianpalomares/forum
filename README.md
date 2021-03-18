@@ -34,12 +34,10 @@ Intellij [here](https://www.jetbrains.com/help/objc/add-environment-variables-an
 
 #### Like Format
 
-```json
+```javascript
 {
-  // The user's id.
-  "userId": 7,
-  // The value of the like. true for like, false for dislike
-  "value": true
+  "userId": 7, // The user's id.
+  "value": true   // The value of the like. true for like, false for dislike
 }
 ```
 
