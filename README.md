@@ -3,19 +3,46 @@
 </p>
 
 > An API for storing forum posts. Built with Spring Boot.
+
 ## Installation
 
 Before starting this application, the following environment variables need to be set.
-- `SPRING_DATASOURCE_URL`
-  - This is the url of the database. eg. `jdbc:mysql://localhost:3306/forum`. `forum` is the table name.
-- `SPRING_DATASOURCE_USERNAME`
-  - This is the username for the database. eg. `root`
-- `SPRING_DATASOURCE_PASSWORD`
-  - This is the password for the database user
-- `SPRING_SECRET_KEY`
-  - This is the secret key that is used to sign the [jwts](https://jwt.io/introduction)
 
-If you are using an IDE, such as Eclipse or Intellij, you may have to set the environment variables within the IDE itself. Steps for Intellij [here](https://www.jetbrains.com/help/objc/add-environment-variables-and-program-arguments.html#add-environment-variables)
+- `SPRING_DATASOURCE_URL`
+    - This is the url of the database. eg. `jdbc:mysql://localhost:3306/forum`. `forum` is the table name.
+- `SPRING_DATASOURCE_USERNAME`
+    - This is the username for the database. eg. `root`
+- `SPRING_DATASOURCE_PASSWORD`
+    - This is the password for the database user
+- `SPRING_SECRET_KEY`
+    - This is the secret key that is used to sign the [jwts](https://jwt.io/introduction)
+
+If you are using an IDE, such as Eclipse or Intellij, you may have to set the environment variables within the IDE
+itself. Steps for
+Intellij [here](https://www.jetbrains.com/help/objc/add-environment-variables-and-program-arguments.html#add-environment-variables)
+
+## API Documentation
+
+### Likes
+
+**GET** `/api/posts/{id}/likes`
+
+| METHOD      | ROUTE       | DESCRIPTION |
+| ----------- | ----------- | ----------- |
+| GET      | `/api/posts/{id}/likes`      | Retreive likes from a specific post. `{id}` is the post's id.
+| POST   | `/api/posts/{id}/likes`       |  Where like submission occurs.
+
+#### Like Format
+
+```json
+{
+  // The user's id.
+  "userId": 7,
+  // The value of the like. true for like, false for dislike
+  "value": true
+}
+```
+
 ## Author
 
 👤 **Adrian Palomares**
