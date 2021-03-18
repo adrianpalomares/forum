@@ -11,7 +11,7 @@ public class Like {
     @Id
     @GeneratedValue
     private long id;
-    
+
     @ManyToOne
     @JoinColumn(name = "user", referencedColumnName = "id")
     private User user;
@@ -62,7 +62,7 @@ public class Like {
         this.post = post;
     }
 
-    public boolean isValue() {
+    public boolean getValue() {
         return value;
     }
 
