@@ -55,7 +55,13 @@ public class LikeService {
             Like createdLike = new Like(user.get(), post.get(), value);
             result = likeRepository.save(createdLike);
         } else {
-            // Else, just return the like that was found
+            // Else, check the value field. If it did not change just send back the like. Else, update.
+            if (queryResult.getValue() != value) {
+                // Update and save
+                queryResult.setValue(value);
+                Like savedLike = likeRepository.save(queryResult);
+                return savedLike;
+            }
             result = queryResult;
         }
 
