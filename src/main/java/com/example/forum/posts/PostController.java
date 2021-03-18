@@ -38,7 +38,7 @@ public class PostController {
     @CrossOrigin(origins = "*")
     @GetMapping("api/posts/{id}/likes")
     public List<Like> getLikesFromPost(@PathVariable(value = "id") Long postId) {
-        // Grab likes using post service
+        // Grab likes using like service
         List<Like> listOfLikes = likeService.getLikesByPost(postId);
         return listOfLikes;
     }
@@ -48,11 +48,17 @@ public class PostController {
         return postService.createPost(postRequest);
     }
 
+    @PostMapping("api/posts/{id}/likes")
+    public LikeDto createLike(@PathVariable(value = "id") Long postId, @RequestBody LikeDto likeDto) {
+        // Create like using like service
+        Like createdLike = likeService.submitLike(likeDto.getUserId(), postId, likeDto.getValue());
+        LikeDto response = new LikeDto(createdLike.getId(), createdLike.getUser().getId(), createdLike.getValue());
+        return response;
+    }
+
     @PutMapping("api/posts/{id}")
     public Post updatePost(@PathVariable(value = "id") Long postId, @RequestBody PostRequest postRequest) {
-
         return postService.updatePost(postId, postRequest);
-
     }
 
     @DeleteMapping("api/posts/{id}")
@@ -60,4 +66,41 @@ public class PostController {
         return postService.deletePost(postId);
     }
 
+}
+
+// The JSON format that the createLike() will receive in the body request.
+class LikeDto {
+    private long id;
+    private long userId;
+    private boolean value;
+
+    public LikeDto(long id, long userId, boolean value) {
+        this.id = id;
+        this.userId = userId;
+        this.value = value;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public boolean getValue() {
+        return value;
+    }
+
+    public void setValue(boolean value) {
+        this.value = value;
+    }
 }
