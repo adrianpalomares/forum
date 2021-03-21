@@ -43,9 +43,7 @@ public class PostController {
         List<Like> listOfLikes = likeService.getLikesByPost(postId);
 
         // Converting into a list of LikeDto's
-        List<LikeDto> response = listOfLikes.stream().map((like) -> {
-            return new LikeDto(like.getId(), like.getUser().getId(), like.getValue());
-        }).collect(Collectors.toList());
+        List<LikeDto> response = listOfLikes.stream().map((like) -> new LikeDto(like.getId(), like.getUser().getId(), like.getValue())).collect(Collectors.toList());
 
         return response;
     }
