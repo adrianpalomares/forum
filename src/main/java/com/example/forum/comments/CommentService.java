@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+// TODO: Switch the post and user repositories for the services
 @Service
 public class CommentService {
 

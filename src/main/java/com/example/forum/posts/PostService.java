@@ -4,6 +4,8 @@ import com.example.forum.users.User;
 import com.example.forum.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -50,6 +52,14 @@ public class PostService {
         Optional<Post> post = postRepository.findById(id);
         postRepository.delete(post.get());
         return post.get();
+    }
+
+    // TODO: handle if user is not found
+    public List<Post> getPostsByUsername(String username) {
+        // Grab the user object
+        Optional<User> user = userRepository.findByUsername(username);
+        List<Post> posts = postRepository.findByUser(user.get());
+        return posts;
     }
 
 }
