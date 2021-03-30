@@ -1,5 +1,8 @@
 package com.example.forum.posts;
 
+import com.example.forum.comments.Comment;
+import com.example.forum.comments.CommentDto;
+import com.example.forum.comments.CommentService;
 import com.example.forum.likes.Like;
 import com.example.forum.likes.LikeDto;
 import com.example.forum.likes.LikeService;
@@ -19,6 +22,9 @@ public class PostController {
 
     @Autowired
     LikeService likeService;
+
+    @Autowired
+    CommentService commentService;
 
     @CrossOrigin(origins = "*")
     @GetMapping("api/posts/{id}")
@@ -44,13 +50,31 @@ public class PostController {
         List<Like> listOfLikes = likeService.getLikesByPost(postId);
 
         // Converting into a list of LikeDto's
-        List<LikeDto> response = listOfLikes.stream().map((like) -> new LikeDto(like.getId(), like.getUser().getId(), like.getValue())).collect(Collectors.toList());
+        List<LikeDto> response = listOfLikes.stream()
+                .map((like) -> new LikeDto(like.getId(), like.getUser().getId(), like.getValue()))
+                .collect(Collectors.toList());
 
         return response;
     }
 
-//    @GetMapping("api/posts/{id}/comments")
-//    public List
+    /**
+     * Grab comments from a post.
+     *
+     * @param postId
+     * @return List of comments
+     */
+    @GetMapping("api/posts/{id}/comments")
+    public List<CommentDto> getCommentsFromPost(@PathVariable(value = "id") Long postId) {
+        // Grab comments using comment service
+        List<Comment> listOfComments = commentService.getCommentsByPost(postId);
+
+        // Convert into a list of CommentDto's
+        List<CommentDto> response = listOfComments.stream()
+                .map((comment) -> new CommentDto(comment.getId(), comment.getUser().getId(), postId, comment.getContent()))
+                .collect(Collectors.toList());
+
+        return response;
+    }
 
     @PostMapping("api/posts")
     public Post createPost(@RequestBody PostRequest postRequest) {
