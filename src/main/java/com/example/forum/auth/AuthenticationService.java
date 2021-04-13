@@ -1,5 +1,6 @@
 package com.example.forum.auth;
 
+import com.example.forum.email.EmailService;
 import com.example.forum.users.User;
 import com.example.forum.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class AuthenticationService {
 
     @Autowired
     JwtUtil jwtUtil;
+    @Autowired
+    EmailService emailService;
 
     public LoginResponse login(LoginRequest loginRequest) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByUsername(loginRequest.getUsername());
@@ -42,7 +45,8 @@ public class AuthenticationService {
             newUser.setEmail(registerRequest.getEmail());
             newUser.setCreated(Instant.now());
             User savedUser = userRepository.save(newUser);
-
+            // Send registration email
+            emailService.sendRegistrationEmail(savedUser.getEmail(), savedUser.getUsername(), savedUser.getPassword());
             return new RegisterResponse(jwtUtil.generateToken(savedUser.getUsername()));
         }
         return new RegisterResponse(null);

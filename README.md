@@ -16,6 +16,11 @@ Before starting this application, the following environment variables need to be
     - This is the password for the database user
 - `SPRING_SECRET_KEY`
     - This is the secret key that is used to sign the [jwts](https://jwt.io/introduction)
+- `SPRING_MAIL_USERNAME`
+    - Username for email account. At the moment, the application is configured to use gmail. It can be changed in appliation.properties
+- `SPRING_MAIL_PASSWORD`
+    - Password for the email account
+
 
 If you are using an IDE, such as Eclipse or Intellij, you may have to set the environment variables within the IDE
 itself. Steps for
