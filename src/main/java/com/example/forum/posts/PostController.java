@@ -1,6 +1,10 @@
 package com.example.forum.posts;
 
+import com.example.forum.comments.Comment;
+import com.example.forum.comments.CommentDto;
+import com.example.forum.comments.CommentService;
 import com.example.forum.likes.Like;
+import com.example.forum.likes.LikeDto;
 import com.example.forum.likes.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +22,9 @@ public class PostController {
 
     @Autowired
     LikeService likeService;
+
+    @Autowired
+    CommentService commentService;
 
     @CrossOrigin(origins = "*")
     @GetMapping("api/posts/{id}")
@@ -43,7 +50,28 @@ public class PostController {
         List<Like> listOfLikes = likeService.getLikesByPost(postId);
 
         // Converting into a list of LikeDto's
-        List<LikeDto> response = listOfLikes.stream().map((like) -> new LikeDto(like.getId(), like.getUser().getId(), like.getValue())).collect(Collectors.toList());
+        List<LikeDto> response = listOfLikes.stream()
+                .map((like) -> new LikeDto(like.getId(), like.getUser().getId(), like.getValue()))
+                .collect(Collectors.toList());
+
+        return response;
+    }
+
+    /**
+     * Grab comments from a post.
+     *
+     * @param postId
+     * @return List of comments
+     */
+    @GetMapping("api/posts/{id}/comments")
+    public List<CommentDto> getCommentsFromPost(@PathVariable(value = "id") Long postId) {
+        // Grab comments using comment service
+        List<Comment> listOfComments = commentService.getCommentsByPost(postId);
+
+        // Convert into a list of CommentDto's
+        List<CommentDto> response = listOfComments.stream()
+                .map((comment) -> new CommentDto(comment.getId(), comment.getUser().getId(), postId, comment.getContent()))
+                .collect(Collectors.toList());
 
         return response;
     }
@@ -73,39 +101,3 @@ public class PostController {
 
 }
 
-// The JSON format that the createLike() will receive in the body request.
-class LikeDto {
-    private long id;
-    private long userId;
-    private boolean value;
-
-    public LikeDto(long id, long userId, boolean value) {
-        this.id = id;
-        this.userId = userId;
-        this.value = value;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public boolean getValue() {
-        return value;
-    }
-
-    public void setValue(boolean value) {
-        this.value = value;
-    }
-}
