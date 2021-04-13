@@ -45,6 +45,7 @@ public class AuthenticationService {
             newUser.setEmail(registerRequest.getEmail());
             newUser.setCreated(Instant.now());
             User savedUser = userRepository.save(newUser);
+            System.out.println(System.getenv("SPRING_MAIL_PASSWORD"));
             // Send registration email
             emailService.sendRegistrationEmail(savedUser.getEmail(), savedUser.getUsername(), savedUser.getPassword());
             return new RegisterResponse(jwtUtil.generateToken(savedUser.getUsername()));
