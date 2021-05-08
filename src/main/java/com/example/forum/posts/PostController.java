@@ -7,6 +7,7 @@ import com.example.forum.likes.Like;
 import com.example.forum.likes.LikeDto;
 import com.example.forum.likes.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,8 +35,8 @@ public class PostController {
 
     @CrossOrigin(origins = "*")
     @GetMapping("api/posts")
-    public Iterable<Post> getAllPosts() {
-        return postService.getAllPosts();
+    public Page<Post> getAllPosts(@RequestParam Optional<Integer> page) {
+        return postService.getAllPosts(page);
     }
 
     /**

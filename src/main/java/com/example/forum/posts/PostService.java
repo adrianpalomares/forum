@@ -3,6 +3,9 @@ package com.example.forum.posts;
 import com.example.forum.users.User;
 import com.example.forum.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,8 +28,9 @@ public class PostService {
         return postRepository.findById(id);
     }
 
-    public Iterable<Post> getAllPosts() {
-        return postRepository.findAll();
+    public Page<Post> getAllPosts(Optional<Integer> page) {
+        PageRequest pageRequest = PageRequest.of(page.orElse(0), 10, Sort.Direction.ASC, "id");
+        return postRepository.findAll(pageRequest);
     }
 
     public Post createPost(PostRequest postRequest) {
