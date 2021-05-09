@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +40,7 @@ public class PostService {
         post.setTitle(postRequest.getTitle());
         post.setUser(user.get());
         post.setText(postRequest.getText());
+        post.setCreatedAt(new Date());
         return postRepository.save(post);
     }
 

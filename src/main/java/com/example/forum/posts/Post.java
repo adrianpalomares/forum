@@ -3,6 +3,7 @@ package com.example.forum.posts;
 import com.example.forum.users.User;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "posts")
@@ -12,6 +13,7 @@ public class Post {
     private long id;
     private String title;
     private String text;
+    private Date createdAt;
 
     @ManyToOne
     @JoinColumn(name = "user", referencedColumnName = "id")
@@ -57,5 +59,13 @@ public class Post {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }
